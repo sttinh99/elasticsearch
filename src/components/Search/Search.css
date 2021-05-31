@@ -1,0 +1,152 @@
+.container {
+    width: 100%;
+    margin: auto;
+}
+.search-header {
+    width: 80%;
+    margin: auto;
+    border-bottom: 1px solid #777;
+    padding-bottom: 2rem;
+}
+.container .form-search {
+    width: 100%;
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+    margin-bottom: 1rem;
+}
+.form-search label {
+    font-size: 110%;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+.form-search input {
+    width: 80%;
+    height: 50px;
+    outline: none;
+    font-family: "Segoe UI light";
+    padding-left: 0.5rem;
+    border: none;
+    border-bottom: 1px solid #777;
+    font-size: 30px;
+}
+.form-search button {
+    margin-left: 1%;
+    outline: none;
+    border: none;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    background: cyan;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.6s;
+}
+.form-search button:hover {
+    background-color: rgb(95, 95, 235);
+    transition: 0.6s;
+}
+.form-search button img {
+    width: 50%;
+}
+.filter-sort {
+    width: 35%;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 5px;
+}
+.filter-sort span {
+    font-size: 20px;
+}
+.filter-sort select {
+    font-size: 16px;
+    font-weight: lighter;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+}
+.render-data {
+    margin-top: 3rem;
+    width: 100%;
+}
+.render-data .render {
+    width: 80%;
+    margin: auto;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 1.5rem;
+}
+.render-data .render .title {
+    width: 900px;
+    display: block;
+    font-size: 30px;
+    color: rgb(12, 12, 134);
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: 0.4s;
+}
+.render-data .render .title:hover {
+    text-decoration: underline;
+    transition: 0.4s;
+}
+.render-data .render .des {
+    width: 900px;
+    display: flex;
+    font-size: 20px;
+    color: rgb(31, 28, 28);
+    font-weight: 400;
+}
+.render-data .render .box-item {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+}
+.box-item .d-create {
+    color: #000;
+    font-weight: bold;
+}
+.box-item .review {
+    color: rgb(20, 20, 100);
+    font-weight: bold;
+}
+.box-item .dlw {
+    color: red;
+    font-weight: bold;
+}
+/*page link*/
+.page-link {
+    display: flex;
+    width: 80%;
+    margin: auto;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+.page-link button {
+    width: 40px;
+    height: 40px;
+    background: none;
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    color: rgb(87, 87, 218);
+}
+.page-link .pre-page button,
+.page-link .next-page button,
+.page-link .home-page button,
+.page-link .last-page button {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.page-link button:hover {
+    color: rgb(14, 14, 112);
+}
+.page-link .page button:active {
+    color: #000;
+}
