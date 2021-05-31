@@ -7,9 +7,9 @@ import searchLogo from '../../assets/loupe.svg'
 function Search() {
     const [results, setResults] = useState([]);
     const [str, setStr] = useState("");
-    const [field, setField] = useState("downloaded");
+    const [field, setField] = useState("");
     const [type, setType] = useState("desc");
-    const [filter, setFilter] = useState("Tailieuvn");
+    const [filter, setFilter] = useState("");
     const [checkSubmit, setCheckSubmit] = useState(false);
     const [docSorts, setDocsorts] = useState([]);
     const [docSources, setDocsources] = useState([]);
@@ -46,18 +46,24 @@ function Search() {
         getData();
     }, [field, type, checkSubmit, filter, page])
     const handleOnChange = (e) => {
-        console.log(e.target.value);
+        console.log(e.target.value);;
         setStr(e.target.value)
     }
     const handleClick = (e) => {
         setField(e.target.value);
+    }
+    const handleClick1 = (e) => {
         setFilter(e.target.value);
     }
     const handleType = (e) => {
         console.log((e.target.value).toLowerCase());
         setType((e.target.value).toLowerCase());
     }
-    const searchResults = () => {
+    const searchResults = (e) => {
+        e.preventDefault();
+        setField("");
+        setFilter("")
+        setPage(1)
         setCheckSubmit(!checkSubmit);
     }
     const clickHomePage = () => {
@@ -87,47 +93,50 @@ function Search() {
     return (
         <div className="container">
             <div className="search-header">
-                <form className="form-search">
+                <form className="form-search" onSubmit={searchResults}>
                     <label htmlFor="search">Search: </label>
                     <input id="search" type="text" placeholder="search here..." onChange={handleOnChange} />
-                    <button type="button" onClick={searchResults}>
+                    <button type="submit">
                         <img src={searchLogo} />
                     </button>
                 </form>
-                <div className="filter-sort">
-                    <div className="sort">
-                        <span>Sorts: </span>
-                        <select value={field} onChange={handleClick}>
-                            {
-                                docSorts.map((item, index) => {
-                                    return (
-                                        <option value={item} key={index}>{item}</option>
-                                    )
-                                })
-                            }
-                        </select>
+                {
+                    results.length > 0 && <div className="filter-sort">
+                        <div className="sort">
+                            <span>Sorts: </span>
+                            <select value={field} onChange={handleClick}>
+                                <option value="" >All Sorts</option>
+                                {
+                                    docSorts.map((item, index) => {
+                                        return (
+                                            <option value={item} key={index}>{item}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </div>
+                        <div className="filter">
+                            <span>Filters: </span>
+                            <select value={filter} onChange={handleClick1}>
+                                <option value="" >All Sources</option>
+                                {
+                                    docSources.map((item, index) => {
+                                        return (
+                                            <option value={item} key={index}>{item}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </div>
+                        <div className="type">
+                            <span>Type: </span>
+                            <select value={type} onChange={handleType}>
+                                <option value="desc">DESC</option>
+                                <option value="asc">ASC</option>
+                            </select>
+                        </div>
                     </div>
-                    <div className="filter">
-                        <span>Filters: </span>
-                        <select value={filter} onChange={handleClick}>
-                            {
-                                docSources.map((item, index) => {
-                                    return (
-                                        <option value={item} key={index}>{item}</option>
-                                    )
-                                })
-                            }
-                        </select>
-                    </div>
-                    <div className="type">
-                        <span>Type: </span>
-                        <select value={type} onChange={handleType}>
-                            <option value="desc">DESC</option>
-                            <option value="asc">ASC</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+                }</div>
             <div className="render-data">
                 {
                     results.map((item) => {
@@ -181,6 +190,36 @@ function Search() {
                         <button className="last-page" disabled={disabled} onClick={clickLastPage}>&rsaquo;&rsaquo;</button>
                     </div>
                 </div>
+            }
+            {
+                (results.length === 0 && page > 1) && <>
+                    <p style={{ textAlign: "center" }}>Không tìm thấy kết quả nào</p>
+                    <div className="page-link">
+                        <div className="home-page">
+                            <button className="home-page" disabled={disabled} onClick={clickHomePage}>&lsaquo;&lsaquo;</button>
+                        </div>
+                        <div className="pre-page">
+                            <button className="decreate" disabled={disabled} onClick={handleClickDecreate}>&lsaquo;</button>
+                        </div>
+                        <div className="page">
+                            <button className="st-page" value={parseInt(page)} onClick={handleClickPage}>{parseInt(page)}</button>
+                        </div>
+                        <div className="page">
+                            <button className="sc-page" value={parseInt(page) + 1} onClick={handleClickPage}>{parseInt(page) + 1}</button>
+                        </div>
+                        <div className="page">
+                            <button className="rd-page" value={parseInt(page) + 2} onClick={handleClickPage}>{parseInt(page) + 2}</button>
+                        </div>
+                        <div className="page">
+                            <button className="rd-page" value={parseInt(page) + 3} onClick={handleClickPage}>{parseInt(page) + 3}</button>
+                        </div>
+                        <div className="next-page">
+                            <button className="increate" onClick={handleClickIncreate}>&rsaquo;</button>
+                        </div>
+                        <div className="last-page">
+                            <button className="last-page" disabled={disabled} onClick={clickLastPage}>&rsaquo;&rsaquo;</button>
+                        </div>
+                    </div></>
             }
         </div>
     );

@@ -54,7 +54,7 @@
     width: 50%;
 }
 .filter-sort {
-    width: 35%;
+    width: 40%;
     display: flex;
     justify-content: space-between;
     padding-bottom: 5px;
@@ -68,6 +68,10 @@
     outline: none;
     border: none;
     border-bottom: 1px solid black;
+    text-transform: capitalize;
+}
+.filter-sort option {
+    text-transform: capitalize;
 }
 .render-data {
     margin-top: 3rem;
