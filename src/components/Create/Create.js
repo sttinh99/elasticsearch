@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import dataSearch from '../../assets/data.json'
+import dataSearch from '../../assets/data1.json'
 
 function Create() {
     const [data, setData] = useState([]);
