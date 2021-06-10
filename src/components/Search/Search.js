@@ -20,7 +20,7 @@ function Search() {
     // const [loading, setLoading] = useState(false)
     useEffect(() => {
         const getDocs = async () => {
-            const res = await axios.post("http://06f0494f9632.ngrok.io/api/document/master-data/search", {})
+            const res = await axios.post("https://search-doc.herokuapp.com/api/document/master-data/search", {})
             setDocsorts(res.data.docSorts);
             setDocsources(res.data.docSources);
         }
@@ -30,7 +30,7 @@ function Search() {
         const getData = async () => {
             try {
                 if (str.length > 0) {
-                    const res = await axios.post("http://06f0494f9632.ngrok.io/api/document/search", {
+                    const res = await axios.post("https://search-doc.herokuapp.com/api/document/search", {
                         "queryString": str,
                         "page": page,
                         "sort": {
@@ -139,38 +139,38 @@ function Search() {
                     </div>
                 </div>
             </div>
-            {
-                <div className="render-data">
-                    {
-                        results.map((item) => {
-                            return (
-                                <div className="render" key={item.id}>
-                                    <p className="title">{item.documentTitle}</p>
-                                    <p className="des">{item.documentDes}</p>
-                                    <div className="box-item">
-                                        <div className="d-create">
-                                            <span>Date: </span>
-                                            <span className="date-create">{item.dateCreate}</span>
-                                        </div>
-                                        <div className="review">
-                                            <span>Review: </span>
-                                            <span className="rv">{item.review}</span>
-                                        </div>
-                                        <div className="dlw">
-                                            <span>Downloaded: </span>
-                                            <span className="dled">{item.downloaded}</span>
-                                        </div>
-                                        <div className="src">
-                                            <span>Source: </span>
-                                            <span className="dled">{item.documentSource}</span>
-                                        </div>
+
+            <div className="render-data">
+                {
+                    results.map((item) => {
+                        return (
+                            <div className="render" key={item.id}>
+                                <p className="title">{item.documentTitle}</p>
+                                <p className="des">{item.documentDes}</p>
+                                <div className="box-item">
+                                    <div className="d-create">
+                                        <span>Date: </span>
+                                        <span className="date-create">{item.dateCreate}</span>
+                                    </div>
+                                    <div className="review">
+                                        <span>Review: </span>
+                                        <span className="rv">{item.review}</span>
+                                    </div>
+                                    <div className="dlw">
+                                        <span>Downloaded: </span>
+                                        <span className="dled">{item.downloaded}</span>
+                                    </div>
+                                    <div className="src">
+                                        <span>Source: </span>
+                                        <span className="dled">{item.documentSource}</span>
                                     </div>
                                 </div>
-                            )
-                        })
-                    }
-                </div>
-            }
+                            </div>
+                        )
+                    })
+                }
+            </div>
+
             {
                 results.length > 0 && <div className="page-link">
                     <div className="home-page">
