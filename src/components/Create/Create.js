@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import dataSearch from '../../assets/data1.json'
+import dataSearch from '../../assets/data.json'
 
 function Create() {
     const [data, setData] = useState([]);
@@ -9,7 +9,7 @@ function Create() {
     }, [])
     const createData = async () => {
         for (let i = 0; i < data.length; i++) {
-            await axios.post('https://search-doc.herokuapp.com/api/document/create', data[i]);
+            await axios.post('http://06f0494f9632.ngrok.io/api/document/create', data[i]);
         }
         console.log("scc");
     }
