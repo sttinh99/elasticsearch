@@ -159,3 +159,8 @@
 .page-link .page button:active {
     color: #000;
 }
+.loading {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}

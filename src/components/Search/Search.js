@@ -17,7 +17,7 @@ function Search() {
     const [docSources, setDocsources] = useState([]);
     const [page, setPage] = useState(1);
     const [disabled, setDisabled] = useState(false);
-    // const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
         const getDocs = async () => {
             const res = await axios.post("https://search-doc.herokuapp.com/api/document/master-data/search", {})
@@ -41,13 +41,14 @@ function Search() {
                     })
                     console.log(res.data, "???");
                     setResults(res.data);
+                    setLoading(true);
                 }
             } catch (error) {
                 console.log(error);
             }
         }
         getData();
-    }, [field, type, checkSubmit, filter, page])
+    }, [field, type, checkSubmit, filter, page, loading])
     const handleOnChange = (e) => {
         console.log(e.target.value);;
         setStr(e.target.value)
@@ -139,69 +140,39 @@ function Search() {
                     </div>
                 </div>
             </div>
-
-            <div className="render-data">
-                {
-                    results.map((item) => {
-                        return (
-                            <div className="render" key={item.id}>
-                                <p className="title">{item.documentTitle}</p>
-                                <p className="des">{item.documentDes}</p>
-                                <div className="box-item">
-                                    <div className="d-create">
-                                        <span>Date: </span>
-                                        <span className="date-create">{item.dateCreate}</span>
-                                    </div>
-                                    <div className="review">
-                                        <span>Review: </span>
-                                        <span className="rv">{item.review}</span>
-                                    </div>
-                                    <div className="dlw">
-                                        <span>Downloaded: </span>
-                                        <span className="dled">{item.downloaded}</span>
-                                    </div>
-                                    <div className="src">
-                                        <span>Source: </span>
-                                        <span className="dled">{item.documentSource}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        )
-                    })
-                }
-            </div>
-
             {
-                results.length > 0 && <div className="page-link">
-                    <div className="home-page">
-                        <button className="home-page" disabled={disabled} onClick={clickHomePage}>&lsaquo;&lsaquo;</button>
-                    </div>
-                    <div className="pre-page">
-                        <button className="decreate" disabled={disabled} onClick={handleClickDecreate}>&lsaquo;</button>
-                    </div>
-                    <div className="page">
-                        <button className="st-page" value={parseInt(page)} onClick={handleClickPage}>{parseInt(page)}</button>
-                    </div>
-                    <div className="page">
-                        <button className="sc-page" value={parseInt(page) + 1} onClick={handleClickPage}>{parseInt(page) + 1}</button>
-                    </div>
-                    <div className="page">
-                        <button className="rd-page" value={parseInt(page) + 2} onClick={handleClickPage}>{parseInt(page) + 2}</button>
-                    </div>
-                    <div className="page">
-                        <button className="rd-page" value={parseInt(page) + 3} onClick={handleClickPage}>{parseInt(page) + 3}</button>
-                    </div>
-                    <div className="next-page">
-                        <button className="increate" onClick={handleClickIncreate}>&rsaquo;</button>
-                    </div>
-                    <div className="last-page">
-                        <button className="last-page" disabled={disabled} onClick={clickLastPage}>&rsaquo;&rsaquo;</button>
-                    </div>
-                </div>
+                (!loading) && <div className="loading"><Circle /></div>
             }
             {
-                (results.length === 0 && page > 1) && <>
-                    <p style={{ textAlign: "center" }}>Không tìm thấy kết quả nào</p>
+                (results.length > 0 && loading) && <div className="render-data">
+                    {
+                        results.map((item) => {
+                            return (
+                                <div className="render" key={item.id}>
+                                    <p className="title">{item.documentTitle}</p>
+                                    <p className="des">{item.documentDes}</p>
+                                    <div className="box-item">
+                                        <div className="d-create">
+                                            <span>Date: </span>
+                                            <span className="date-create">{item.dateCreate}</span>
+                                        </div>
+                                        <div className="review">
+                                            <span>Review: </span>
+                                            <span className="rv">{item.review}</span>
+                                        </div>
+                                        <div className="dlw">
+                                            <span>Downloaded: </span>
+                                            <span className="dled">{item.downloaded}</span>
+                                        </div>
+                                        <div className="src">
+                                            <span>Source: </span>
+                                            <span className="dled">{item.documentSource}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
                     <div className="page-link">
                         <div className="home-page">
                             <button className="home-page" disabled={disabled} onClick={clickHomePage}>&lsaquo;&lsaquo;</button>
@@ -227,7 +198,48 @@ function Search() {
                         <div className="last-page">
                             <button className="last-page" disabled={disabled} onClick={clickLastPage}>&rsaquo;&rsaquo;</button>
                         </div>
-                    </div></>
+                    </div>
+                </div>
+            }
+            {
+                (results.length === 0 && loading === true && page > 1) &&
+                <div>
+                    <p style={{ textAlign: "center", marginTop: 20 }}>Không tìm thấy kết quả nào</p>
+                    <div className="page-link">{
+                        console.log(loading)
+                    }
+                        <div className="home-page">
+                            <button className="home-page" disabled={disabled} onClick={clickHomePage}>&lsaquo;&lsaquo;</button>
+                        </div>
+                        <div className="pre-page">
+                            <button className="decreate" disabled={disabled} onClick={handleClickDecreate}>&lsaquo;</button>
+                        </div>
+                        <div className="page">
+                            <button className="st-page" value={parseInt(page)} onClick={handleClickPage}>{parseInt(page)}</button>
+                        </div>
+                        <div className="page">
+                            <button className="sc-page" value={parseInt(page) + 1} onClick={handleClickPage}>{parseInt(page) + 1}</button>
+                        </div>
+                        <div className="page">
+                            <button className="rd-page" value={parseInt(page) + 2} onClick={handleClickPage}>{parseInt(page) + 2}</button>
+                        </div>
+                        <div className="page">
+                            <button className="rd-page" value={parseInt(page) + 3} onClick={handleClickPage}>{parseInt(page) + 3}</button>
+                        </div>
+                        <div className="next-page">
+                            <button className="increate" onClick={handleClickIncreate}>&rsaquo;</button>
+                        </div>
+                        <div className="last-page">
+                            <button className="last-page" disabled={disabled} onClick={clickLastPage}>&rsaquo;&rsaquo;</button>
+                        </div>
+                    </div>
+                </div>
+            }
+            {
+                (results.length === 0 && loading === true && page === 1) &&
+                <div>
+                    <p style={{ textAlign: "center", marginTop: 20 }}>Không tìm thấy kết quả nào</p>
+                </div>
             }
         </div>
     );
