@@ -65,8 +65,8 @@ function Search() {
     }
     const searchResults = (e) => {
         e.preventDefault();
-        setField("");
-        setFilter("")
+        // setField("");
+        // setFilter("")
         setPage(1)
         setCheckSubmit(!checkSubmit);
         setLoading(false);
