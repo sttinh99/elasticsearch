@@ -17,7 +17,7 @@ function Search() {
     const [docSources, setDocsources] = useState([]);
     const [page, setPage] = useState(1);
     const [disabled, setDisabled] = useState(false);
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     useEffect(() => {
         const getDocs = async () => {
             const res = await axios.post("https://search-doc.herokuapp.com/api/document/master-data/search", {})
@@ -69,9 +69,11 @@ function Search() {
         setFilter("")
         setPage(1)
         setCheckSubmit(!checkSubmit);
+        setLoading(false);
     }
     const clickHomePage = () => {
         setPage(1);
+        setLoading(false);
     }
     const clickLastPage = () => {
         console.log("~~~");
@@ -85,10 +87,12 @@ function Search() {
             setDisabled(false)
             setPage(page - 1)
         }
+        setLoading(false);
     }
     const handleClickIncreate = () => {
         console.log(page);
         setPage(page + 1)
+        setLoading(false);
     }
     const handleClickPage = (e) => {
         console.log(e.target.value);
