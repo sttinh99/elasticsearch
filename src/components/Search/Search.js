@@ -123,7 +123,7 @@ function Search() {
                                 {
                                     docSorts.map((item, index) => {
                                         return (
-                                            <option value={item} key={index}>{item}</option>
+                                            <option value={item} key={index}>{sort[index]}</option>
                                         )
                                     })
                                 }
@@ -136,7 +136,7 @@ function Search() {
                                 {
                                     docSources.map((item, index) => {
                                         return (
-                                            <option value={item} key={index}>{sort[index]}</option>
+                                            <option value={item} key={index}>{item}</option>
                                         )
                                     })
                                 }
