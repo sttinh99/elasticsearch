@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
-import { Circle } from 'react-spinners-css';
+
+import { Default } from 'react-spinners-css';
+
 // import Facebook from '@bit/joshk.react-spinners-css.facebook';
 // import { getRandomColor } from '@bit/joshk.jotils.get-random-color'
 import './Search.css'
@@ -145,7 +147,7 @@ function Search() {
                 </div>
             </div>
             {
-                (!loading) && <div className="loading"><Circle /></div>
+                (!loading) && <div className="loading"><Default /></div>
             }
             {
                 (results.length > 0 && loading) && <div className="render-data">
@@ -240,7 +242,7 @@ function Search() {
                 </div>
             }
             {
-                (results.length === 0 && loading === true && page === 1) &&
+                (results.length === 0 && loading === true && page === 1 && str.length > 0) &&
                 <div>
                     <p style={{ textAlign: "center", marginTop: 20 }}>Không tìm thấy kết quả nào</p>
                 </div>
