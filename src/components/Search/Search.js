@@ -7,7 +7,7 @@ import { Default } from 'react-spinners-css';
 // import { getRandomColor } from '@bit/joshk.jotils.get-random-color'
 import './Search.css'
 import searchLogo from '../../assets/loupe.svg'
-
+const sort = ["Click", "Review", "Downloaded"];
 function Search() {
     const [results, setResults] = useState([]);
     const [str, setStr] = useState("");
@@ -136,7 +136,7 @@ function Search() {
                                 {
                                     docSources.map((item, index) => {
                                         return (
-                                            <option value={item} key={index}>{item}</option>
+                                            <option value={item} key={index}>{sort[index]}</option>
                                         )
                                     })
                                 }
