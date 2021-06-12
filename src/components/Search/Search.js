@@ -161,7 +161,7 @@ function Search() {
                         results.map((item) => {
                             return (
                                 <div className="render" key={item.id}>
-                                    <p className="title" onClick={handleClickTitle(item.id)}>{item.documentTitle}</p>
+                                    <p className="title" onClick={() => handleClickTitle(item.id)}>{item.documentTitle}</p>
                                     <p className="des">{item.documentDes}</p>
                                     <div className="box-item">
                                         <div className="d-create">
