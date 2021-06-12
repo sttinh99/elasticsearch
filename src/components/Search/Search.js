@@ -55,6 +55,10 @@ function Search() {
         console.log(e.target.value);;
         setStr(e.target.value)
     }
+    const handleClickTitle = async (id) => {
+        console.log(id);
+        await axios.post("https://search-doc.herokuapp.com/api/document/update", { id: id })
+    }
     const handleClick = (e) => {
         setField(e.target.value);
     }
@@ -157,7 +161,7 @@ function Search() {
                         results.map((item) => {
                             return (
                                 <div className="render" key={item.id}>
-                                    <p className="title">{item.documentTitle}</p>
+                                    <p className="title" onClick={handleClickTitle(item.id)}>{item.documentTitle}</p>
                                     <p className="des">{item.documentDes}</p>
                                     <div className="box-item">
                                         <div className="d-create">
