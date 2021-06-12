@@ -110,41 +110,43 @@ function Search() {
                         <img src={searchLogo} />
                     </button>
                 </form>
-                <div className="filter-sort">
-                    <div className="sort">
-                        <span>Sorts: </span>
-                        <select value={field} onChange={handleClick}>
-                            <option value="" >All Sorts</option>
-                            {
-                                docSorts.map((item, index) => {
-                                    return (
-                                        <option value={item} key={index}>{item}</option>
-                                    )
-                                })
-                            }
-                        </select>
+                {
+                    results.length > 0 && <div className="filter-sort">
+                        <div className="sort">
+                            <span>Sorts: </span>
+                            <select value={field} onChange={handleClick}>
+                                <option value="" >All Sorts</option>
+                                {
+                                    docSorts.map((item, index) => {
+                                        return (
+                                            <option value={item} key={index}>{item}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </div>
+                        <div className="filter">
+                            <span>Filters: </span>
+                            <select value={filter} onChange={handleClick1}>
+                                <option value="" >All Sources</option>
+                                {
+                                    docSources.map((item, index) => {
+                                        return (
+                                            <option value={item} key={index}>{item}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </div>
+                        <div className="type">
+                            <span>Type: </span>
+                            <select value={type} onChange={handleType}>
+                                <option value="desc">DESC</option>
+                                <option value="asc">ASC</option>
+                            </select>
+                        </div>
                     </div>
-                    <div className="filter">
-                        <span>Filters: </span>
-                        <select value={filter} onChange={handleClick1}>
-                            <option value="" >All Sources</option>
-                            {
-                                docSources.map((item, index) => {
-                                    return (
-                                        <option value={item} key={index}>{item}</option>
-                                    )
-                                })
-                            }
-                        </select>
-                    </div>
-                    <div className="type">
-                        <span>Type: </span>
-                        <select value={type} onChange={handleType}>
-                            <option value="desc">DESC</option>
-                            <option value="asc">ASC</option>
-                        </select>
-                    </div>
-                </div>
+                }
             </div>
             {
                 (!loading) && <div className="loading"><Default /></div>
