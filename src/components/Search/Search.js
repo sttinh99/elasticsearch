@@ -111,7 +111,7 @@ function Search() {
                     </button>
                 </form>
                 {
-                    results.length > 0 && <div className="filter-sort">
+                    (results.length > 0 || filter !== "") && <div className="filter-sort">
                         <div className="sort">
                             <span>Sorts: </span>
                             <select value={field} onChange={handleClick}>
