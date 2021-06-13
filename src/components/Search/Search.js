@@ -7,6 +7,7 @@ import { Default } from 'react-spinners-css';
 // import { getRandomColor } from '@bit/joshk.jotils.get-random-color'
 import './Search.css'
 import searchLogo from '../../assets/loupe.svg'
+// import { Link } from 'react-router-dom';
 const sort = ["Click", "Review", "Downloaded"];
 function Search() {
     const [results, setResults] = useState([]);
@@ -46,7 +47,8 @@ function Search() {
                     setLoading(true);
                 }
             } catch (error) {
-                console.log(error);
+                await alert(error);
+                await window.location.assign("/search");
             }
         }
         getData();
