@@ -60,9 +60,11 @@ function Search() {
         await axios.post("https://search-doc.herokuapp.com/api/document/update", { id: id })
     }
     const handleClick = (e) => {
+        e.preventDefault();
         setField(e.target.value);
     }
     const handleClick1 = (e) => {
+        e.preventDefault();
         setFilter(e.target.value);
     }
     const handleType = (e) => {
@@ -179,6 +181,10 @@ function Search() {
                                         <div className="src">
                                             <span>Source: </span>
                                             <span className="dled">{item.documentSource}</span>
+                                        </div>
+                                        <div className="click">
+                                            <span>Click: </span>
+                                            <span className="dled">{item.clickCount}</span>
                                         </div>
                                     </div>
                                 </div>

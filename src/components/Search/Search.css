@@ -107,7 +107,7 @@
     font-weight: 400;
 }
 .render-data .render .box-item {
-    width: 40%;
+    width: 60%;
     display: flex;
     justify-content: space-between;
 }
@@ -126,6 +126,11 @@
 .box-item .src {
     text-transform: capitalize;
     color: rgb(20, 20, 100);
+    font-weight: bold;
+}
+.box-item .click {
+    text-transform: capitalize;
+    color: red;
     font-weight: bold;
 }
 /*page link*/
