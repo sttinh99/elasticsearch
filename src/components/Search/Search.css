@@ -94,10 +94,16 @@
     overflow: hidden;
     text-overflow: ellipsis;
     transition: 0.4s;
+    cursor: pointer;
 }
 .render-data .render .title:hover {
     text-decoration: underline;
     transition: 0.4s;
+}
+.render-data .render .title:active {
+    text-decoration: underline;
+    transition: 0.4s;
+    color: rgb(13, 13, 44);
 }
 .render-data .render .des {
     width: 900px;
